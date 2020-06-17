@@ -1,5 +1,5 @@
 # About #
-AoPS is the userscript for using the game forum currency AoPSCoin on the Art of Problem Solving website.
+AoPSCoin is the userscript for using the game forum currency AoPSCoin on the Art of Problem Solving website.
 ## Necessary to Install the Master Script ##
 In order to use this script, you must install a userscript manager such as [Tampermonkey](https://tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/). Please note that Greasemonkey does NOT work due to sandbox issues.
 ## Installation ##
