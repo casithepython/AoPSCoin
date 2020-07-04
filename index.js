@@ -227,6 +227,10 @@ if (token) {
             .then(result => handle_result(result))
             .catch(error => handle_error(error))
     })
+    $("#lgt-button").click(function () {
+        document.cookie = "AoPSCoin=; expires=1 Jan 3000 12:00:00 UTC;" // Add the token as a cookie
+        location.reload()
+    })
 } else {
     $("#loginModal").modal('show')
     $("#login-form").submit(function (e) {
@@ -253,4 +257,25 @@ if (token) {
             .catch(error => alert('Incorrect username or password'));
 
     });
+    $("#token-login-form").submit(function (e){
+        e.preventDefault()
+        let inputs = $("#token-login-form :input").toArray()
+        let token = inputs[0].value
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"token":token});
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://quantlaw.com/get_username", requestOptions)
+            .then(response => response.json())
+            .then(result => set_token(result))
+            .catch(error => alert("Incorrect token!"));
+    })
 }
