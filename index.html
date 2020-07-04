@@ -49,29 +49,52 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div id="loginModal-body" class="modal-body">
-                <div>Please confirm your identity by logging in below.</div>
-                <form class="p-4" id="login-form">
-                    <div class="form-group">
-                        <label for="login-username">Username</label>
-                        <input type="text" class="form-control" id="login-username" aria-describedby="emailHelp" placeholder="AoPS username" required="true">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#standard-login-tab" role="tab" aria-controls="nav-home" aria-selected="true">Login</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Login with Token</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="standard-login-tab" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
                     </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" class="form-control" id="login-password" placeholder="Password" required="true">
+                    <div id="loginModal-body" class="modal-body">
+                        <div>Please confirm your identity by logging in below.</div>
+                        <form class="p-4" id="login-form">
+                            <div class="form-group">
+                                <label for="login-username">Username</label>
+                                <input type="text" class="form-control" id="login-username" aria-describedby="emailHelp" placeholder="AoPS username" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" class="form-control" id="login-password" placeholder="Password" required="true">
+                            </div>
+                            <button type="submit" id="login-button" class="btn btn-primary">Login</button>
+                        </form>
                     </div>
-                    <button type="submit" id="login-button" class="btn btn-primary">Login</button>
-                </form>
+                    <div class="modal-footer">
+                        <a href="https://artofproblemsolving.com/community/c1219179h2172158p16217774">How does this work?</a>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="token-loginModalLabel">Login with Token</h5>
+                    </div>
+                    <div id="tokenModal-body" class="modal-body">
+                        <div>Enter your AoPSCoin Token below.</div>
+                        <form class="p-4" id="token-login-form">
+                            <div class="form-group">
+                                <label for="login-username">Token</label>
+                                <input type="text" class="form-control" id="login-token" aria-describedby="emailHelp" placeholder="AoPSCoin token" required="true">
+                            </div>
+                            <button type="submit" id="token-login-button" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="https://artofproblemsolving.com/community/c1219179h2172158p16217774">How does this work?</a>
-            </div>
+
         </div>
     </div>
 </div>
@@ -121,6 +144,7 @@
     </div>
     <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
         <div class="p-4">Thank you for using AoPSCoin. If you encounter any bugs or find any vulnerabilities, please contact casi. Documentation can be found <a href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum" class="badge badge-primary">here</a>.</div>
+        <button class="mx-4 p-4 btn btn-primary" id="lgt-button">Logout</button>
     </div>
 </div>
 <!-- Optional JavaScript -->
