@@ -7,7 +7,7 @@ Before you can use AoPSCoin, you must have Tampermonkey or Violentmonkey install
 Alternately, for users who are unable to use userscripts, AoPSCoin Web can be accessed at https://casithepython.github.io/AoPSCoin.  
 
 # Installation #
-Click [here](https://raw.githubusercontent.com/casithepython/AoPSCoin/master/aopscoin.user.js) to install the userscript.  
+Click [here](https://bit.ly/aopscoin) to install the userscript.  
 
 # Using the Userscript #
 Documentation for AoPSCoin is available [here](https://artofproblemsolving.com/community/c1219179h2172158_documentation), as well as information about security and privacy. If you discover bugs or vulnerabilities, post them [here](https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum) or contact casi.  
