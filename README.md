@@ -2,7 +2,7 @@
 AoPSCoin is a universal forum currency for the Art of Problem Solving website. It can be used either through a userscript added on to the Art of Problem Solving website, or can be accessed at the [AoPSCoin website](https://casithepython.github.io/AoPSCoin).  
 
 # How to Install AoPSCoin #
-Before you can use AoPSCoin, you must have Tampermonkey or Violentmonkey installed. Please note that you must have one of these installed before attempting to install the AoPSCoin userscript. Once Tampermonkey or Violentmonkey is installed, you can click the link [here](https://github.com/casithepython/AoPSCoin/raw/master/aopscoin.user.js) to install AoPSCoin.  
+Before you can use AoPSCoin, you must have Tampermonkey or Violentmonkey installed. Please note that you must have one of these installed before attempting to install the AoPSCoin userscript. Once Tampermonkey or Violentmonkey is installed, you can click the link [here](https://bit.ly/aopscoinv11) to install AoPSCoin.  
 
 Alternately, for users who are unable to use userscripts, AoPSCoin Web can be accessed at https://casithepython.github.io/AoPSCoin.  
 
