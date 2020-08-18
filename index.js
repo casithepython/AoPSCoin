@@ -122,6 +122,7 @@ function formatHeader(userdata) {
     let balance = userdata.balance
     let isValid = userdata.isValid === 1
     $("#balance").text(balance.toString() + " AoPSCoins")
+    $("#username-box").text("You are logged in as " + userdata.name + ".")
     if (isValid === false) {
         $("#balance").css("color", "red") //Balance is if invalid
     } else {
@@ -148,6 +149,8 @@ function setFeedTopics() { // The AJAX call for getting the feed topics.
         .catch(error => console.log('error', error));
 }
 
+function encode(e){return e.replace(/[^]/g,function(e){return"&#"+e.charCodeAt(0)+";"})}
+
 function formatFeedTopics(transactions) { // Function for formatting and constructing feed. This takes a list of objects {name:"",amount:"",reason:"",timestamp: Date(),notes:""}
     let feedList = $(".tab-pane .list-group")[0] // This is where the feed content will go
     transactionList = ""
@@ -162,7 +165,7 @@ function formatFeedTopics(transactions) { // Function for formatting and constru
         let name = transaction.name
         let amount = transaction.amount
         let time = formatTime(transaction.transferTime)
-        let notes = transaction.notes
+        let notes = encode(transaction.notes)
         // Some formatting to show whether the transaction was sent or received
         if (transaction.received) {
             name = ("From " + name)
@@ -170,14 +173,14 @@ function formatFeedTopics(transactions) { // Function for formatting and constru
             name = ("To " + name)
         }
         // Add the HTML with the variables added
-        transactionList += (`<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        transactionList += (`<div class="list-group-item flex-column align-items-start">
 <div class="d-flex w-100 justify-content-between">
 <h5 class="mb-1">${name}</h5> 
 <small>${time}</small> 
 </div> 
 <small>${amount} AoPSCoins</small> 
 <p class="mb-1">${notes}</p> 
-</a>`);
+</div>`);
     }
     feedList.innerHTML = '<div class="list-group">' + transactionList + '</div>'
 }
