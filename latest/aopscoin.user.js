@@ -95,9 +95,11 @@ function construct_nav(name, is_admin, is_forum) {
         '<span class="dropdown-category-label">aopscoin</span>' +
         '<a href="https://artofproblemsolving.com/aopscoin-advanced">AoPSCoin Advanced</a>'
     if (is_forum) {
+        // Forum admin toolbox if the user is a forum
         navHTML += '<a href="https://artofproblemsolving.com/community/forum-admin-toolbox">Forum Admin Toolbox</a>'
     }
     if (is_admin) {
+        // AoPSCoin Admin toolbox if the user is an admin
         navHTML += '<a href="https://artofproblemsolving.com/community/aopscoin-admin-toolbox">AoPSCoin Admin Toolbox</a>'
 
     }
@@ -107,6 +109,7 @@ function construct_nav(name, is_admin, is_forum) {
 
 // AOPSCOIN ADVANCED //
 function build_aopscoin_advanced() {
+    // Add the token update form
     $('#main-column-standard')[0].innerHTML = (`<div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,13 +130,15 @@ function build_aopscoin_advanced() {
     </div>
 </div>`)
 
-
+    // Handler for the token update form
     $("#token-update-form").submit(function (e) {
         e.preventDefault()
         let inputs = $("#token-update-form :input").toArray()
         let token = inputs[0].value
         set_new_token(token)
     })
+
+    // Logout is just deleting the cookie
     $("#logout-button").click(function () {
         set_new_token("")
     })
@@ -141,13 +146,15 @@ function build_aopscoin_advanced() {
 
 // FORUM ADMIN TOOLBOX //
 function build_forum_admin_toolbox() {
-    cmty_get_user_info()
+    cmty_get_user_info() // First add the nice header
     while (true) {
+        // Gotta wait until the Community loads
         if (AoPS.Community.Views.buildBlockUserForm != null) {
             setTimeout(function () {
-                $("#main-column-standard").html(AoPS.Community.Views.buildBlockUserForm())
-                $("#main-column-standard p").remove()
-                $("#main-column-standard input").attr("id", "token-fetch-input")
+                // Token fetch form
+                $("#main-column-standard").html(AoPS.Community.Views.buildBlockUserForm()) // Use the blockUserForm
+                $("#main-column-standard p").remove() // Erase all the text from the form
+                $("#main-column-standard input").attr("id", "token-fetch-input") // Make the input referrable
                 $(".cmty-username-autocomplete-wrapper.ui-front").wrap(
                     `<div class="modal fade" id="fetchTokenModal" tabindex="-1" role="dialog" aria-labelledby="fetchTokenModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -155,36 +162,36 @@ function build_forum_admin_toolbox() {
                                 <div class="modal-body">
                                 <form id="fetch-token-update-form" _lpchecked="1">
                                 <div class="form-group">`
-                )
+                ) // Wrap with a modal, this is how we keep the inputs separate
                 $(".modal-body").prepend(
                     `<label style="align:left">Enter username below to fetch token:</label>`
-                )
+                ) // Add our own label
                 $(".modal-content").prepend(
                     `<div class="modal-header">
                                     <h3 class="modal-title" id="fetchTokenModalLabel">Fetch Token</h3>
                                     </div>`
-                )
+                ) // Add our own header
                 $('#fetch-token-update-form').append(
                     `<button type="submit" id="fetch-token-update-button" class="btn btn-primary">Fetch Token</button>`
-                )
-                $("#token-fetch-input").attr("required", "true")
-                $('#token-fetch-input').addClass("form-control")
-                $(".cmty-user-profile-block-user-form span").remove()
-                $('.cmty-user-profile-block-user-form').replaceWith($(".cmty-user-profile-block-user-form").contents())
+                ) // Add button for submit
+                $("#token-fetch-input").attr("required", "true") // Gotta fetch someone
+                $('#token-fetch-input').addClass("form-control") // For the AoPS CSS
+                $(".cmty-user-profile-block-user-form span").remove() // Remove the label
+                $('.cmty-user-profile-block-user-form').replaceWith($(".cmty-user-profile-block-user-form").contents()) // Get rid of the .cmty-user-profile-block-user-form wrapper
 
-
+                // Handler for token fetch submit
                 $("#fetch-token-update-form").submit(function (e) {
                     e.preventDefault()
-                    let username = $('#token-fetch-input')[0].value
-                    $("#token-fetch-input")[0].value = ""
-                    fetch_token(username)
+                    let username = $('#token-fetch-input')[0].value // Get username
+                    $("#token-fetch-input")[0].value = "" // Reset input
+                    fetch_token(username) // Run the fetch_token
                 })
 
 
-                graph_username_grabber()
+                graph_username_grabber() // Add the graph
 
                 $("#main-column-standard").prepend(`<p>This is the AoPSCoin Admin Toolbox. If you are a forum admin and would like a new feature added, PM casi.</p><hr>`)
-            }, 1000)
+            }, 1000) // Wait a second for everything to finish loading
             break
         }
     }
@@ -210,14 +217,15 @@ function cmty_get_user_info() {
 }
 
 function format_community_header(data) {
+    // get the data
     let username = data.name
     let isValid = data.isValid
     $(".header-title a").text("AoPSCoin")
     $(".header-user-data-top a").text(username)
     $(".header-user-data-top a").attr("href", "")
-    $(".header-user-data-top a").attr("onclick", "AoPS.Feed.feed_view.openFeed(AoPS.Feed.feed_view.aopscoin_subfeed)")
+    $(".header-user-data-top a").attr("onclick", "AoPS.Feed.feed_view.openFeed(AoPS.Feed.feed_view.aopscoin_subfeed)") // When you click your name it opens the AoPSCoin subfeed
     $(".header-user-data-bottom").html("Token: " + `<a id="aopscoin-token" style="user-select: all">
-        ${get_token()} </a>`)
+        ${get_token()} </a>`) // show token
     if (isValid === 0) {
         $(".header-user-data-bottom").css("color", "red")
     }
@@ -246,7 +254,7 @@ function fetch_token(name) {
 }
 
 function display_token(token, name) {
-    AoPS.Ui.Modal.closeAllModals();
+    AoPS.Ui.Modal.closeAllModals(); // Close the loading screens
     if (token === "Invalid permissions") {
         alert("There was an error. If this was a legitimate error, report it in the AoPSCoin Support Forum. " +
             "If you are either not an admin or trying to get a protected token, don't bother.")
@@ -288,6 +296,7 @@ function check_is_forum(name) {
 
 function add_forum_graph(go, forum) {
     if (go) {
+        // All the graph text
         $("#main-column-standard").append(`<hr><div class="modal fade" id="forumGraphModal" tabindex="-1" role="dialog" aria-labelledby="forumGraphModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -309,6 +318,7 @@ function add_forum_graph(go, forum) {
 // AOPSCOIN ADMIN TOOLBOX //
 
 function add_forum_adder() {
+    // HTML for the adder
     $("#main-column-standard").append(`<hr><div class="modal fade" id="forumAdderModal" tabindex="-1" role="dialog" aria-labelledby="forumAdderModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -328,11 +338,17 @@ function add_forum_adder() {
                 </div>
             </div>
     </div>`)
+
+    // Handler for submission
     $("#forum-adder-form").submit(function () {
-        AoPS.Community.Views.throwLoaderBlockingMessage("Please wait...")
+        AoPS.Community.Views.throwLoaderBlockingMessage("Please wait...") // loading message
+
+        // Get the inputs and the token
         let forum = $("#forum-name")[0].value
         let admins = $("#forum-admins")[0].value.split(",").map(admin => admin.trim())
         let token = get_token()
+
+        // Request
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         $("#forum-adder-form")[0].reset()
@@ -353,7 +369,7 @@ function add_forum_adder() {
 }
 
 function build_aopscoin_admin_toolbox() {
-    cmty_get_user_info()
+    cmty_get_user_info() // Nice header
     while (true) {
         if (AoPS.Community.Views.buildBlockUserForm != null) {
             setTimeout(function () {
