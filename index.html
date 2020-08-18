@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>AoPSCoin Web</title>
 </head>
 <body>
 <!-- Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,17 +25,21 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:window.location.reload()">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="javascript:window.location.reload()">Close
+                </button>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="errorModalLabel">An error occured. Please contact casi.</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        onclick="javascript:window.location.reload()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -46,17 +52,21 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#standard-login-tab" role="tab" aria-controls="nav-home" aria-selected="true">Login</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Login with Token</a>
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#standard-login-tab"
+                       role="tab" aria-controls="nav-home" aria-selected="true">Login</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">Login with Token</a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="standard-login-tab" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="standard-login-tab" role="tabpanel"
+                     aria-labelledby="nav-home-tab">
                     <div class="modal-header">
                         <h5 class="modal-title" id="loginModalLabel">Login</h5>
                     </div>
@@ -65,17 +75,20 @@
                         <form class="p-4" id="login-form">
                             <div class="form-group">
                                 <label for="login-username">Username</label>
-                                <input type="text" class="form-control" id="login-username" aria-describedby="emailHelp" placeholder="AoPS username" required="true">
+                                <input type="text" class="form-control" id="login-username" aria-describedby="emailHelp"
+                                       placeholder="AoPS username" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="login-password">Password</label>
-                                <input type="password" class="form-control" id="login-password" placeholder="Password" required="true">
+                                <input type="password" class="form-control" id="login-password" placeholder="Password"
+                                       required="true">
                             </div>
                             <button type="submit" id="login-button" class="btn btn-primary">Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <a href="https://artofproblemsolving.com/community/c1219179h2172158p16218138" target="_BLANK">How does this work?</a>
+                        <a href="https://artofproblemsolving.com/community/c1219179h2172158p16218138" target="_BLANK">How
+                            does this work?</a>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -86,7 +99,8 @@
                         <div>Enter your AoPSCoin Token below.</div>
                         <form class="p-4" id="token-login-form">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="login-token" aria-describedby="emailHelp" placeholder="AoPSCoin token" required="true">
+                                <input type="text" class="form-control" id="login-token" aria-describedby="emailHelp"
+                                       placeholder="AoPSCoin token" required="true">
                             </div>
                             <button type="submit" id="token-login-button" class="btn btn-primary">Login</button>
                         </form>
@@ -98,40 +112,43 @@
     </div>
 </div>
 <nav class="navbar">
-<ul class="nav nav-tabs" id="tabs" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="view-tab" data-toggle="tab" href="#view" role="tab" aria-controls="view" aria-selected="true">View Transactions</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Send Transaction</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="help-tab" data-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">Help</a>
-    </li>
-</ul>
-<ul class="nav justify-content-end">
-    <li class="nav-item">
-        <p id="balance" class="badge badge-primary"></p>
-    </li>
-</ul>
+    <ul class="nav nav-tabs" id="tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="view-tab" data-toggle="tab" href="#view" role="tab" aria-controls="view"
+               aria-selected="true">View Transactions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send"
+               aria-selected="false">Send Transaction</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="help-tab" data-toggle="tab" href="#help" role="tab" aria-controls="help"
+               aria-selected="false">Help</a>
+        </li>
+    </ul>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <p id="balance" class="badge badge-primary"></p>
+        </li>
+    </ul>
 </nav>
 <div class="tab-content" id="tab-content">
     <div class="tab-pane fade show active" id="view" role="tabpanel" aria-labelledby="view-tab">
         <div class="list-group">
         </div>
     </div>
-
-
     <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
         <form id="transaction-form" class="px-4">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="toUser">To</label>
-                    <input type="text" class="form-control" id="toUser" placeholder="Username (case sensitive)" required="true">
+                    <input type="text" class="form-control" id="toUser" placeholder="Username (case sensitive)"
+                           required="true">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="amount">Amount</label>
-                    <input type="number" class="form-control" id="amount" placeholder="Amount (integer only)" min="1" step="1" oninput="validity.valid||(value='');" required="true">
+                    <input type="number" class="form-control" id="amount" placeholder="Amount (integer only)" min="1"
+                           step="1" oninput="validity.valid||(value='');" required="true">
                 </div>
             </div>
             <div class="form-group">
@@ -142,16 +159,89 @@
         </form>
     </div>
     <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
-        <div class="p-4">Thank you for using AoPSCoin. If you encounter any bugs or find any vulnerabilities, please contact casi. Documentation can be found <a href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum" class="badge badge-primary" target="_BLANK">here</a>.</div>
-        <div class="p-4" id="username-box"></div>
+        <div class="p-4">Thank you for using AoPSCoin. If you encounter any bugs or find any vulnerabilities, please
+            contact casi. Documentation can be found <a
+                    href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum"
+                    class="badge badge-primary" target="_BLANK">here</a>.
+        </div>
+        <div class="p-4 username-box"></div>
         <button class="mx-4 p-4 btn btn-primary" id="lgt-button">Logout</button>
+    </div>
+    <div class="tab-pane fade" id="forum-admin" role="tabpanel" aria-labelledby="forum-admin-tab">
+        <div class="p-4">This is the Forum Admin Toolbox. If you encounter any bugs or find any vulnerabilities, please
+            contact casi. Documentation can be found <a
+                    href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum"
+                    class="badge badge-primary" target="_BLANK">here</a>.
+        </div>
+        <div class="p-4">If you are not logged into a forum account, these forms won't work for you.</div>
+        <div class="p-4 username-box"></div>
+        <form id="fetch-token-update-form" class="px-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="token-fetch-input">User to Fetch</label>
+                    <input type="text" class="form-control" id="token-fetch-input"
+                           placeholder="Username (case sensitive)" required="true">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Fetch Token</button>
+        </form>
+
+    </div>
+    <div class="tab-pane fade" id="aopscoin-admin" role="tabpanel" aria-labelledby="forum-admin-tab">
+        <div class="p-4">This is the Forum Admin Toolbox. If you encounter any bugs or find any vulnerabilities, please
+            contact casi. Documentation can be found <a
+                    href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum"
+                    class="badge badge-primary" target="_BLANK">here</a>.
+        </div>
+        <div class="p-4">If you are not logged into a forum account, these forms won't work for you.</div>
+        <div class="p-4 username-box"></div>
+        <hr>
+        <h3 class="p-4">Make Admin (casi only)</h3>
+        <form id="make-admin-form" class="px-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="token-fetch-input">User to Make Admin</label>
+                    <input type="text" class="form-control" id="make-admin-input"
+                           placeholder="Username (case sensitive)" required="true">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Make Admin</button>
+        </form>
+        <hr>
+        <h3 class="p-4">Add Forum</h3>
+        <form id="forum-adder-form" class="px-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="forum-name">Forum Name</label>
+                    <input type="text" class="form-control px-2" id="forum-name"
+                           placeholder="Forum Name (case sensitive)" required="true">
+
+
+                </div>
+                <div class="form-group col-md-6">
+
+                    <label for="forum-name">Forum Admins</label>
+                    <input type="text" class="form-control px-2" id="forum-admins"
+                           placeholder="Forum admins (comma separated, case sensitive)" required="true">
+
+                </div>
+                <button type="submit" class="btn btn-primary">Add Forum</button>
+            </div>
+        </form>
+
     </div>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 <script src="index.js"></script>
 </body>
 </html>
