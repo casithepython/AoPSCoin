@@ -111,7 +111,7 @@
 </ul>
 <ul class="nav justify-content-end">
     <li class="nav-item">
-        <p href="#" id="balance" class="badge badge-primary"></p>
+        <p id="balance" class="badge badge-primary"></p>
     </li>
 </ul>
 </nav>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="amount">Amount</label>
-                    <input type="number" class="form-control" id="amount" placeholder="Amount (integer only)" required="true">
+                    <input type="number" class="form-control" id="amount" placeholder="Amount (integer only)" min="1" step="1" oninput="validity.valid||(value='');" required="true">
                 </div>
             </div>
             <div class="form-group">
@@ -143,6 +143,7 @@
     </div>
     <div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
         <div class="p-4">Thank you for using AoPSCoin. If you encounter any bugs or find any vulnerabilities, please contact casi. Documentation can be found <a href="https://artofproblemsolving.com/community/c1219179_aopscoin_support_forum" class="badge badge-primary" target="_BLANK">here</a>.</div>
+        <div class="p-4" id="username-box"></div>
         <button class="mx-4 p-4 btn btn-primary" id="lgt-button">Logout</button>
     </div>
 </div>
