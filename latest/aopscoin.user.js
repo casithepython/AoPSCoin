@@ -75,7 +75,7 @@ function nav_is_admin(name) {
     fetch("https://quantlaw.com/is_aopscoin_admin?user=" + name, requestOptions)
         .then(response => response.text())
         .then(result => nav_is_forum(name, result === "true"))
-        .catch(error => nav_is_forum(name, false));
+        .catch(error => console.log('error', error));
 }
 
 function nav_is_forum(name, is_admin) {
@@ -87,7 +87,7 @@ function nav_is_forum(name, is_admin) {
     fetch("https://quantlaw.com/is_forum?user=" + name, requestOptions)
         .then(response => response.text())
         .then(result => construct_nav(name, is_admin, result === "true"))
-        .catch(error => construct_nav(name, is_admin, false));
+        .catch(error => console.log('error', error));
 }
 
 function construct_nav(name, is_admin, is_forum) {
