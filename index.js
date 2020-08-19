@@ -1,4 +1,4 @@
-// COOKIES/TOKEN //
+// COOKIES
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -13,22 +13,6 @@ function getCookie(cname) {
         }
     }
     return "";
-}
-
-function get_token() {
-    return getCookie("AoPSCoin") //Get their token that's saved
-}
-
-function set_token(result) {
-    document.cookie = "AoPSCoin=" + result.token + "; expires=1 Jan 3000 12:00:00 UTC;" // Add the token as a cookie
-    location.reload()
-}
-
-// TEXT MANAGEMENT //
-function encode(e) {
-    return e.replace(/[^]/g, function (e) {
-        return "&#" + e.charCodeAt(0) + ";"
-    })
 }
 
 // TIME SECTION //
@@ -52,7 +36,7 @@ function elapsedTime(time) { // This is for less than or equal to 6 hours ago
         else {
             return (hours.toString() + " hours ago")
         }
-        // x hours ago
+         // x hours ago
     }
 }
 
@@ -115,27 +99,6 @@ function formatTime(date) { // Master function for the time formatting
     } // Otherwise, just post the date sent
 }
 
-function fetch_token(name) {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({"token": get_token(), "user": name});
-
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch("https://quantlaw.com/get_token", requestOptions)
-        .then(response => response.json())
-        .then(result => handle_result("The token of " + name + " is " + result.token))
-        .catch(error => console.log(error));
-}
-
-// VIEW FEED //
-
 function setFeedHeader() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -159,7 +122,7 @@ function formatHeader(userdata) {
     let balance = userdata.balance
     let isValid = userdata.isValid === 1
     $("#balance").text(balance.toString() + " AoPSCoins")
-    $(".username-box").text("You are logged in as " + userdata.name + ".")
+    $("#username-box").text("You are logged in as " + userdata.name + ".")
     if (isValid === false) {
         $("#balance").css("color", "red") //Balance is if invalid
     } else {
@@ -185,6 +148,8 @@ function setFeedTopics() { // The AJAX call for getting the feed topics.
         .then(result => formatFeedTopics(result))
         .catch(error => console.log('error', error));
 }
+
+function encode(e){return e.replace(/[^]/g,function(e){return"&#"+e.charCodeAt(0)+";"})}
 
 function formatFeedTopics(transactions) { // Function for formatting and constructing feed. This takes a list of objects {name:"",amount:"",reason:"",timestamp: Date(),notes:""}
     let feedList = $(".tab-pane .list-group")[0] // This is where the feed content will go
@@ -220,102 +185,6 @@ function formatFeedTopics(transactions) { // Function for formatting and constru
     feedList.innerHTML = '<div class="list-group">' + transactionList + '</div>'
 }
 
-// NAV //
-
-function build_nav() {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({"token": get_token()});
-
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch("https://quantlaw.com/get_username", requestOptions)
-        .then(response => response.json())
-        .then(result => nav_is_admin(result.username))
-        .catch(error => console.log('error', error));
-}
-
-function nav_is_admin(name) {
-    const requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-    fetch("https://quantlaw.com/is_aopscoin_admin?user=" + name, requestOptions)
-        .then(response => response.text())
-        .then(result => nav_is_forum(name, result === "true"))
-        .catch(error => console.log('error', error));
-}
-
-function nav_is_forum(name, is_admin) {
-    const requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-    fetch("https://quantlaw.com/is_forum?user=" + name, requestOptions)
-        .then(response => response.text())
-        .then(result => construct_nav(name, is_admin, result === "true"))
-        .catch(error => console.log('error', error));
-}
-
-function construct_nav(name, is_admin, is_forum) {
-    if (is_forum) {
-        $("#tabs").append(`
-    <li class="nav-item">
-        <a class="nav-link" id="forum-admin-tab" data-toggle="tab" href="#forum-admin" role="tab" aria-controls="help" aria-selected="false">Forum</a>
-    </li>
-`)
-        add_forum_graph(true, name)
-    }
-    if (is_admin) {
-        $("#tabs").append(`
-    <li class="nav-item">
-        <a class="nav-link" id="aopscoin-admin-tab" data-toggle="tab" href="#aopscoin-admin" role="tab" aria-controls="help" aria-selected="false">Admin</a>
-    </li>
-`)
-    }
-
-}
-
-// FORUM ADMIN TOOLBOX //
-
-function add_forum_graph(go, forum) {
-    if (go) {
-        $("#forum-admin").append(`<hr>
-            <img width="50%" src="${"https://quantlaw.com/forum_history?forum=" + forum}" alt=""/>
-            `)
-    }
-}
-
-// ADMIN TOOLBOX //
-function make_admin(name) {
-    let token = get_token()
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({"token": token, "user": name});
-
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch("https://quantlaw.com/admin/make_admin", requestOptions)
-        .then(response => response.text())
-        .then(result => handle_result(result))
-        .catch(error => handle_result("Either you're not casi or you're casi. In case #1, you don't need to do anything. In case #2, go fix the bug!"));
-}
-
-// HANDLING FUNCTIONS //
 function handle_result(result) {
     $("#successModal-body").text(result)
     $('#successModal').modal('show');
@@ -326,14 +195,19 @@ function handle_error(result) {
     $('#errorModal').modal('show');
 }
 
-
+function get_token() {
+    return getCookie("AoPSCoin") //Get their token that's saved
+}
+function set_token(result) {
+    document.cookie = "AoPSCoin=" + result.token + "; expires=1 Jan 3000 12:00:00 UTC;" // Add the token as a cookie
+    location.reload()
+}
 var token = getCookie("AoPSCoin") //Get their token that's saved
 if (token) {
     setInterval(function () {
         setFeedTopics();
         setFeedHeader();
     }, 1000)
-    build_nav()
     $("#transaction-form").submit(function (e) {
         e.preventDefault()
         let inputs = $("#transaction-form :input").toArray()
@@ -356,44 +230,10 @@ if (token) {
             .then(result => handle_result(result))
             .catch(error => handle_error(error))
     })
-    $("#fetch-token-update-form").submit(function (e) {
-        e.preventDefault()
-        let username = $('#token-fetch-input')[0].value
-        $("#token-fetch-input")[0].value = ""
-        fetch_token(username)
-    })
-    $("#forum-adder-form").submit(function (e) {
-        e.preventDefault()
-        let forum = $("#forum-name")[0].value
-        let admins = $("#forum-admins")[0].value.split(",").map(admin => admin.trim())
-        let token = get_token()
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const raw = JSON.stringify({"token": token, "forum": forum, "admins": admins});
-
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://quantlaw.com/admin/add_forum", requestOptions)
-            .then(response => response.text())
-            .then(result => handle_result(result))
-            .catch(handle_result('There was an error. If you are a valid admin, report this on the AoPSCoin Support Forum. Otherwise, don\'t bother.'));
-    })
-    $("#make-admin-form").submit(function (e) {
-        e.preventDefault()
-        let username = $('#make-admin-input')[0].value
-        $("#make-admin-input")[0].value = ""
-        make_admin(username)
-    })
     $("#lgt-button").click(function () {
         document.cookie = "AoPSCoin=; expires=1 Jan 3000 12:00:00 UTC;" // Add the token as a cookie
         location.reload()
     })
-
 } else {
     $("#loginModal").modal('show')
     $("#login-form").submit(function (e) {
@@ -405,7 +245,7 @@ if (token) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({"username": username, "password": password});
+        var raw = JSON.stringify({"username":username,"password":password});
 
         var requestOptions = {
             method: 'POST',
@@ -420,14 +260,14 @@ if (token) {
             .catch(error => alert('Incorrect username or password'));
 
     });
-    $("#token-login-form").submit(function (e) {
+    $("#token-login-form").submit(function (e){
         e.preventDefault()
         let inputs = $("#token-login-form :input").toArray()
         let token = inputs[0].value
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({"token": token});
+        var raw = JSON.stringify({"token":token});
 
         var requestOptions = {
             method: 'POST',
