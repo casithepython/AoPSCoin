@@ -260,24 +260,15 @@ setTimeout(function() {
 <div class="cmty-post-tr">
 <div class="cmty-post-left cmty-no-phone">
 <div data-hj-suppress="" data-hj-masked="" class="cmty-post-username   "><p data-cmty="" title="`+name+`">`+name+`</p></div>
-
-
 </div><div class="cmty-post-middle aopscoin-post-middle">
-
 <div class="cmty-post-top-inline cmty-post-top-data">
-
 <div class="cmty-post-top">
 <a title="Amount" class="cmty-post-number">`+amount+`</a>
 <a title="Amount" class="cmty-post-number aops-font">y</a>
-
 <span class="cmty-post-date">`+time+`</span>
-
-
 </div>
 </div>
 <div class="cmty-post-body"><div class="cmty-post-html"><div></div>${unescape(notes)}</div>
-
-
 </div>
 </div>
 </div>
